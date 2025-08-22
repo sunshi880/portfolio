@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Alex Johnson - Full Stack Developer</title>
+<meta name="description" content="Full Stack Developer specializing in modern web applications. View my portfolio and get in touch for your next project.">
+<script src="https://cdn.tailwindcss.com/3.4.16"></script>
+<script>
+tailwind.config = {
+theme: {
+extend: {
+colors: {
+primary: '#3b82f6',
+secondary: '#8b5cf6'
+},
+keyframes: {
+shimmer: {
+'0%': { transform: 'translateX(-100%)' },
+'100%': { transform: 'translateX(100%)' }
+},
+float: {
+'0%, 100%': { transform: 'translateY(0)' },
+'50%': { transform: 'translateY(-10px)' }
+}
+},
+animation: {
+shimmer: 'shimmer 2s infinite',
+float: 'float 3s ease-in-out infinite'
+},
+borderRadius: {
+'none': '0px',
+'sm': '4px',
+DEFAULT: '8px',
+'md': '12px',
+'lg': '16px',
+'xl': '20px',
+'2xl': '24px',
+'3xl': '32px',
+'full': '9999px',
+'button': '8px'
+}
+}
+},
+darkMode: 'class'
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css" rel="stylesheet">
+<style>
+@keyframes gradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+:where([class^="ri-"])::before {
+  content: "\f3c2";
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: 'Inter', sans-serif;
+  scroll-behavior: smooth;
+  transition: all 0.3s ease;
+}
+.gradient-text {
+  background: linear-gradient(135deg, #3b82f6, #8b5cf6, #3b82f6);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradient 3s ease infinite;
+}
+.glass-effect {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+.fade-in {
+opacity: 0;
+transform: translateY(2rem);
+transition: all 0.8s ease;
+}
+.fade-in.visible {
+opacity: 1;
+transform: translateY(0);
+}
+.modal {
+opacity: 0;
+visibility: hidden;
+transition: all 0.3s ease;
+}
+.modal.active {
+opacity: 1;
+visibility: visible;
+}
+.skill-bar {
+width: 0%;
+transition: width 1.5s ease-in-out;
+}
+.skill-bar.animate {
+width: var(--skill-width);
+}
+.dark-toggle {
+transition: transform 0.3s ease;
+}
+.dark-toggle:hover {
+transform: scale(1.1);
+}
+.project-card {
+transition: all 0.3s ease;
+}
+.project-card:hover {
+transform: translateY(-0.5rem);
+}
+.btn-primary {
+background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+transition: all 0.3s ease;
+}
+.btn-primary:hover {
+background: linear-gradient(135deg, #1d4ed8, #1e40af);
+transform: translateY(-0.125rem);
+}
+.btn-secondary {
+transition: all 0.3s ease;
+}
+.btn-secondary:hover {
+background-color: #f3f4f6;
+transform: translateY(-0.125rem);
+}
+.dark .btn-secondary:hover {
+background-color: #374151;
+}
+</style>
+</head>
+<body class="bg-white dark:bg-gray-900 text-gray-900 dark:text-white transition-colors duration-300">
+<header class="fixed top-0 w-full bg-white/80 dark:bg-gray-900/80 backdrop-blur-md z-50 border-b border-gray-200 dark:border-gray-700">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+<div class="text-xl font-bold text-primary">AJ</div>
+<button id="darkToggle" class="dark-toggle p-2 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700">
+<div class="w-5 h-5 flex items-center justify-center">
+<i class="ri-sun-line dark:hidden"></i>
+<i class="ri-moon-line hidden dark:block"></i>
+</div>
+</button>
+</div>
+</header>
+<section class="min-h-screen flex items-center justify-center relative overflow-hidden" style="background-image: url('https://readdy.ai/api/search-image?query=Futuristic%20abstract%203D%20geometric%20landscape%20with%20neon%20lights%20and%20glowing%20elements%2C%20floating%20particles%20and%20energy%20streams%2C%20professional%20modern%20tech%20aesthetic%20with%20perfect%20lighting%20and%20dynamic%20composition%2C%20ultra%20high%20quality%20digital%20art%20with%20depth%20and%20dimension&width=1920&height=1080&seq=hero-bg-003&orientation=landscape'); background-size: cover; background-position: center;">
+<div class="absolute inset-0 bg-gradient-to-r from-white/95 via-white/90 to-transparent dark:from-gray-900/95 dark:via-gray-900/90 dark:to-transparent"></div>
+<div class="absolute inset-0 bg-[radial-gradient(circle_at_center,_transparent_0%,_rgba(255,255,255,0.2)_100%)] dark:bg-[radial-gradient(circle_at_center,_transparent_0%,_rgba(0,0,0,0.2)_100%)]"></div>
+<div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+<div class="max-w-3xl fade-in animate-float" id="heroContent">
+<h1 class="text-5xl sm:text-6xl lg:text-7xl font-bold mb-6 leading-tight relative">
+Hi, I'm <span class="gradient-text relative inline-block transform hover:scale-105 transition-transform duration-300">saniya</span>
+<span class="absolute -right-8 top-0 text-4xl animate-pulse">👋</span>
+</h1>
+<p class="text-xl sm:text-2xl text-gray-600 dark:text-gray-300 mb-8 leading-relaxed">
+Full Stack Developer crafting modern web experiences with clean code and innovative solutions. Passionate about creating digital products that make a difference.
+</p>
+<div class="flex flex-col sm:flex-row gap-4">
+<button onclick="scrollToSection('contact')" class="btn-primary text-white px-8 py-4 !rounded-button font-semibold text-lg whitespace-nowrap">
+Contact Me
+</button>
+<button onclick="scrollToSection('projects')" class="btn-secondary bg-white dark:bg-gray-800 text-gray-900 dark:text-white border-2 border-gray-300 dark:border-gray-600 px-8 py-4 !rounded-button font-semibold text-lg whitespace-nowrap">
+View Work
+</button>
+</div>
+</div>
+</div>
+</section>
+<section id="projects" class="py-20 bg-gray-50 dark:bg-gray-800">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="text-center mb-16 fade-in">
+<h2 class="text-4xl font-bold mb-4">Featured Projects</h2>
+<p class="text-xl text-gray-600 dark:text-gray-300">A showcase of my recent work and creative solutions</p>
+</div>
+<div class="grid md:grid-cols-2 gap-8">
+<div class="project-card bg-white/80 dark:bg-gray-900/80 backdrop-blur-md rounded-2xl overflow-hidden shadow-xl fade-in hover:scale-[1.02] transition-all duration-300 border border-gray-100 dark:border-gray-800">
+<div class="aspect-video overflow-hidden group">
+<img src="https://readdy.ai/api/search-image?query=Modern%20e-commerce%20website%20interface%20with%20clean%20design%2C%20product%20showcase%20layout%2C%20shopping%20cart%20functionality%2C%20responsive%20web%20design%2C%20professional%20UI%2FUX%20design%20with%20elegant%20typography%20and%20color%20scheme%2C%20contemporary%20online%20store%20homepage%20with%20beautiful%20product%20displays&width=600&height=400&seq=project-001&orientation=landscape" alt="E-commerce Platform" class="w-full h-full object-cover object-top">
+</div>
+<div class="p-6">
+<h3 class="text-2xl font-bold mb-3">E-commerce Platform</h3>
+<p class="text-gray-600 dark:text-gray-300 mb-4">A full-stack e-commerce solution built with React, Node.js, and MongoDB. Features include user authentication, payment integration, and admin dashboard.</p>
+<button onclick="openModal('https://readdy.ai/api/search-image?query=Modern%20e-commerce%20website%20interface%20with%20clean%20design%2C%20product%20showcase%20layout%2C%20shopping%20cart%20functionality%2C%20responsive%20web%20design%2C%20professional%20UI%2FUX%20design%20with%20elegant%20typography%20and%20color%20scheme%2C%20contemporary%20online%20store%20homepage%20with%20beautiful%20product%20displays&width=1200&height=800&seq=project-001-full&orientation=landscape')" class="btn-primary text-white px-6 py-3 !rounded-button font-semibold whitespace-nowrap">
+View Demo
+</button>
+</div>
+</div>
+<div class="project-card bg-white/80 dark:bg-gray-900/80 backdrop-blur-md rounded-2xl overflow-hidden shadow-xl fade-in hover:scale-[1.02] transition-all duration-300 border border-gray-100 dark:border-gray-800">
+<div class="aspect-video overflow-hidden group">
+<img src="https://readdy.ai/api/search-image?query=Task%20management%20application%20interface%20with%20kanban%20board%20layout%2C%20project%20tracking%20dashboard%2C%20team%20collaboration%20features%2C%20modern%20productivity%20app%20design%20with%20clean%20UI%20elements%2C%20organized%20workflow%20visualization%20with%20cards%20and%20columns&width=600&height=400&seq=project-002&orientation=landscape" alt="Task Management App" class="w-full h-full object-cover object-top">
+</div>
+<div class="p-6">
+<h3 class="text-2xl font-bold mb-3">Task Management App</h3>
+<p class="text-gray-600 dark:text-gray-300 mb-4">A collaborative task management application with real-time updates, drag-and-drop functionality, and team collaboration features using React and Socket.io.</p>
+<button onclick="openModal('https://readdy.ai/api/search-image?query=Task%20management%20application%20interface%20with%20kanban%20board%20layout%2C%20project%20tracking%20dashboard%2C%20team%20collaboration%20features%2C%20modern%20productivity%20app%20design%20with%20clean%20UI%20elements%2C%20organized%20workflow%20visualization%20with%20cards%20and%20columns&width=1200&height=800&seq=project-002-full&orientation=landscape')" class="btn-primary text-white px-6 py-3 !rounded-button font-semibold whitespace-nowrap">
+View Demo
+</button>
+</div>
+</div>
+<div class="project-card bg-white/80 dark:bg-gray-900/80 backdrop-blur-md rounded-2xl overflow-hidden shadow-xl fade-in hover:scale-[1.02] transition-all duration-300 border border-gray-100 dark:border-gray-800">
+<div class="aspect-video overflow-hidden group">
+<img src="https://readdy.ai/api/search-image?query=Weather%20application%20interface%20with%20beautiful%20weather%20visualization%2C%20forecast%20displays%2C%20location-based%20weather%20data%2C%20modern%20mobile%20app%20design%20with%20intuitive%20user%20interface%2C%20clean%20weather%20dashboard%20with%20charts%20and%20animations&width=600&height=400&seq=project-003&orientation=landscape" alt="Weather Dashboard" class="w-full h-full object-cover object-top">
+</div>
+<div class="p-6">
+<h3 class="text-2xl font-bold mb-3">Weather Dashboard</h3>
+<p class="text-gray-600 dark:text-gray-300 mb-4">A responsive weather application with location-based forecasts, interactive charts, and beautiful animations built with Vue.js and weather APIs.</p>
+<button onclick="openModal('https://readdy.ai/api/search-image?query=Weather%20application%20interface%20with%20beautiful%20weather%20visualization%2C%20forecast%20displays%2C%20location-based%20weather%20data%2C%20modern%20mobile%20app%20design%20with%20intuitive%20user%20interface%2C%20clean%20weather%20dashboard%20with%20charts%20and%20animations&width=1200&height=800&seq=project-003-full&orientation=landscape')" class="btn-primary text-white px-6 py-3 !rounded-button font-semibold whitespace-nowrap">
+View Demo
+</button>
+</div>
+</div>
+<div class="project-card bg-white/80 dark:bg-gray-900/80 backdrop-blur-md rounded-2xl overflow-hidden shadow-xl fade-in hover:scale-[1.02] transition-all duration-300 border border-gray-100 dark:border-gray-800">
+<div class="aspect-video overflow-hidden group">
+<img src="https://readdy.ai/api/search-image?query=Social%20media%20dashboard%20interface%20with%20analytics%20charts%2C%20engagement%20metrics%2C%20content%20management%20tools%2C%20modern%20social%20platform%20design%20with%20clean%20layout%2C%20user-friendly%20interface%20with%20data%20visualization%20and%20social%20networking%20features&width=600&height=400&seq=project-004&orientation=landscape" alt="Social Media Dashboard" class="w-full h-full object-cover object-top">
+</div>
+<div class="p-6">
+<h3 class="text-2xl font-bold mb-3">Social Media Dashboard</h3>
+<p class="text-gray-600 dark:text-gray-300 mb-4">A comprehensive social media management platform with analytics, scheduling, and engagement tracking features built with Angular and Firebase.</p>
+<button onclick="openModal('https://readdy.ai/api/search-image?query=Social%20media%20dashboard%20interface%20with%20analytics%20charts%2C%20engagement%20metrics%2C%20content%20management%20tools%2C%20modern%20social%20platform%20design%20with%20clean%20layout%2C%20user-friendly%20interface%20with%20data%20visualization%20and%20social%20networking%20features&width=1200&height=800&seq=project-004-full&orientation=landscape')" class="btn-primary text-white px-6 py-3 !rounded-button font-semibold whitespace-nowrap">
+View Demo
+</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="about" class="py-20 bg-white dark:bg-gray-900">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="grid lg:grid-cols-2 gap-12 items-center">
+<div class="fade-in">
+<h2 class="text-4xl font-bold mb-6">About Me</h2>
+<div class="text-lg text-gray-600 dark:text-gray-300 space-y-4">
+<p>
+I'm a passionate Full Stack Developer with over 5 years of experience creating digital solutions that combine beautiful design with robust functionality. My journey in web development started with a curiosity about how things work on the internet, and it has evolved into a career dedicated to building exceptional user experiences.
+</p>
+<p>
+I specialize in modern JavaScript frameworks, cloud technologies, and agile development practices. When I'm not coding, you'll find me exploring new technologies, contributing to open-source projects, or sharing knowledge with the developer community.
+</p>
+<p>
+My approach to development is user-centered and performance-focused, ensuring that every project I work on delivers value to both users and businesses.
+</p>
+</div>
+</div>
+<div class="fade-in">
+<h3 class="text-2xl font-bold mb-8">Technical Skills</h3>
+<div class="space-y-6">
+<div class="skill-item">
+<div class="flex justify-between items-center mb-2">
+<div class="flex items-center gap-3">
+<div class="w-6 h-6 flex items-center justify-center">
+<i class="ri-code-s-slash-line text-primary"></i>
+</div>
+<span class="font-semibold">Frontend Development</span>
+</div>
+<span class="text-sm text-gray-600 dark:text-gray-400">95%</span>
+</div>
+<div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+<div class="skill-bar bg-gradient-to-r from-primary to-secondary h-2 rounded-full relative overflow-hidden" style="--skill-width: 95%">
+<div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-shimmer"></div>
+</div>
+</div>
+</div>
+<div class="skill-item">
+<div class="flex justify-between items-center mb-2">
+<div class="flex items-center gap-3">
+<div class="w-6 h-6 flex items-center justify-center">
+<i class="ri-server-line text-primary"></i>
+</div>
+<span class="font-semibold">Backend Development</span>
+</div>
+<span class="text-sm text-gray-600 dark:text-gray-400">90%</span>
+</div>
+<div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+<div class="skill-bar bg-gradient-to-r from-primary to-secondary h-2 rounded-full" style="--skill-width: 90%"></div>
+</div>
+</div>
+<div class="skill-item">
+<div class="flex justify-between items-center mb-2">
+<div class="flex items-center gap-3">
+<div class="w-6 h-6 flex items-center justify-center">
+<i class="ri-database-2-line text-primary"></i>
+</div>
+<span class="font-semibold">Database Design</span>
+</div>
+<span class="text-sm text-gray-600 dark:text-gray-400">85%</span>
+</div>
+<div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+<div class="skill-bar bg-gradient-to-r from-primary to-secondary h-2 rounded-full" style="--skill-width: 85%"></div>
+</div>
+</div>
+<div class="skill-item">
+<div class="flex justify-between items-center mb-2">
+<div class="flex items-center gap-3">
+<div class="w-6 h-6 flex items-center justify-center">
+<i class="ri-cloud-line text-primary"></i>
+</div>
+<span class="font-semibold">Cloud & DevOps</span>
+</div>
+<span class="text-sm text-gray-600 dark:text-gray-400">80%</span>
+</div>
+<div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+<div class="skill-bar bg-gradient-to-r from-primary to-secondary h-2 rounded-full" style="--skill-width: 80%"></div>
+</div>
+</div>
+</div>
+<div class="mt-8">
+<h4 class="text-lg font-semibold mb-4">Technologies I Work With</h4>
+<div class="grid grid-cols-4 sm:grid-cols-6 gap-4">
+<div class="flex flex-col items-center p-3 bg-gray-50 dark:bg-gray-800 rounded-lg">
+<div class="w-8 h-8 flex items-center justify-center mb-2">
+<i class="ri-reactjs-line text-2xl text-primary"></i>
+</div>
+<span class="text-xs text-center">React</span>
+</div>
+<div class="flex flex-col items-center p-3 bg-gray-50 dark:bg-gray-800 rounded-lg">
+<div class="w-8 h-8 flex items-center justify-center mb-2">
+<i class="ri-vuejs-line text-2xl text-primary"></i>
+</div>
+<span class="text-xs text-center">Vue.js</span>
+</div>
+<div class="flex flex-col items-center p-3 bg-gray-50 dark:bg-gray-800 rounded-lg">
+<div class="w-8 h-8 flex items-center justify-center mb-2">
+<i class="ri-nodejs-line text-2xl text-primary"></i>
+</div>
+<span class="text-xs text-center">Node.js</span>
+</div>
+<div class="flex flex-col items-center p-3 bg-gray-50 dark:bg-gray-800 rounded-lg">
+<div class="w-8 h-8 flex items-center justify-center mb-2">
+<i class="ri-database-2-line text-2xl text-primary"></i>
+</div>
+<span class="text-xs text-center">MongoDB</span>
+</div>
+<div class="flex flex-col items-center p-3 bg-gray-50 dark:bg-gray-800 rounded-lg">
+<div class="w-8 h-8 flex items-center justify-center mb-2">
+<i class="ri-github-line text-2xl text-primary"></i>
+</div>
+<span class="text-xs text-center">Git</span>
+</div>
+<div class="flex flex-col items-center p-3 bg-gray-50 dark:bg-gray-800 rounded-lg">
+<div class="w-8 h-8 flex items-center justify-center mb-2">
+<i class="ri-cloud-line text-2xl text-primary"></i>
+</div>
+<span class="text-xs text-center">AWS</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="contact" class="py-20 bg-gray-50 dark:bg-gray-800">
+<div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="text-center mb-16 fade-in">
+<h2 class="text-4xl font-bold mb-4">Let's Work Together</h2>
+<p class="text-xl text-gray-600 dark:text-gray-300">Have a project in mind? I'd love to hear about it and discuss how we can bring your ideas to life.</p>
+</div>
+<div class="glass-effect dark:bg-gray-900/80 rounded-2xl shadow-xl backdrop-blur-xl p-8 fade-in border border-gray-100 dark:border-gray-800 relative overflow-hidden">
+<div class="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent pointer-events-none"></div>
+<form id="contactForm" class="space-y-6">
+<div class="grid md:grid-cols-2 gap-6">
+<div>
+<label for="name" class="block text-sm font-semibold mb-2">Full Name</label>
+<input type="text" id="name" name="name" required class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-primary focus:border-transparent transition-colors">
+</div>
+<div>
+<label for="email" class="block text-sm font-semibold mb-2">Email Address</label>
+<input type="email" id="email" name="email" required class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-primary focus:border-transparent transition-colors">
+</div>
+</div>
+<div>
+<label for="message" class="block text-sm font-semibold mb-2">Message</label>
+<textarea id="message" name="message" rows="6" required class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-primary focus:border-transparent transition-colors resize-none"></textarea>
+</div>
+<button type="submit" class="btn-primary text-white px-8 py-4 !rounded-button font-semibold text-lg whitespace-nowrap w-full sm:w-auto relative overflow-hidden group hover:shadow-lg hover:shadow-primary/20 transition-all duration-300">
+<span class="relative z-10 flex items-center justify-center gap-2">
+Send Message
+<i class="ri-send-plane-line"></i>
+</span>
+<div class="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent translate-x-full group-hover:translate-x-0 transition-transform duration-500"></div>
+</button>
+</form>
+<div class="mt-12 pt-8 border-t border-gray-200 dark:border-gray-700">
+<div class="text-center">
+<p class="text-gray-600 dark:text-gray-300 mb-6">Connect with me on social media</p>
+<div class="flex justify-center space-x-6">
+<a href="#" class="w-12 h-12 flex items-center justify-center bg-gray-100 dark:bg-gray-800 rounded-full hover:bg-primary hover:text-white transition-colors">
+<i class="ri-github-line text-xl"></i>
+</a>
+<a href="#" class="w-12 h-12 flex items-center justify-center bg-gray-100 dark:bg-gray-800 rounded-full hover:bg-primary hover:text-white transition-colors">
+<i class="ri-linkedin-line text-xl"></i>
+</a>
+<a href="#" class="w-12 h-12 flex items-center justify-center bg-gray-100 dark:bg-gray-800 rounded-full hover:bg-primary hover:text-white transition-colors">
+<i class="ri-twitter-line text-xl"></i>
+</a>
+<a href="#" class="w-12 h-12 flex items-center justify-center bg-gray-100 dark:bg-gray-800 rounded-full hover:bg-primary hover:text-white transition-colors">
+<i class="ri-dribbble-line text-xl"></i>
+</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<footer class="bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-700 py-8">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+<p class="text-gray-600 dark:text-gray-300">© 2025 Alex Johnson. All rights reserved. Built with passion and modern web technologies.</p>
+</div>
+</footer>
+<div id="imageModal" class="modal fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4">
+<div class="relative max-w-5xl max-h-full">
+<button onclick="closeModal()" class="absolute -top-4 -right-4 w-10 h-10 flex items-center justify-center bg-white dark:bg-gray-800 rounded-full text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors z-10">
+<i class="ri-close-line text-xl"></i>
+</button>
+<img id="modalImage" src="" alt="Project Demo" class="max-w-full max-h-[90vh] object-contain rounded-lg">
+</div>
+</div>
+<script id="darkModeScript">
+function initDarkMode() {
+try {
+const darkToggle = document.getElementById('darkToggle');
+const html = document.documentElement;
+if (!darkToggle) {
+console.warn('Dark mode toggle button not found');
+return;
+}
+const savedTheme = localStorage.getItem('theme');
+if (savedTheme) {
+html.classList.toggle('dark', savedTheme === 'dark');
+} else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+html.classList.add('dark');
+}
+darkToggle.addEventListener('click', function() {
+html.classList.toggle('dark');
+localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
+});
+} catch (error) {
+console.error('Error initializing dark mode:', error);
+}
+}
+document.addEventListener('DOMContentLoaded', initDarkMode);
+</script>
+<script id="animationScript">
+function initAnimations() {
+try {
+const observerOptions = {
+threshold: 0.1,
+rootMargin: '0px 0px -50px 0px'
+};
+const observer = new IntersectionObserver(function(entries) {
+entries.forEach(entry => {
+if (entry.isIntersecting) {
+entry.target.classList.add('visible');
+const skillBars = entry.target.querySelectorAll('.skill-bar');
+if (skillBars.length) {
+setTimeout(() => {
+skillBars.forEach(bar => bar.classList.add('animate'));
+}, 200);
+}
+}
+});
+}, observerOptions);
+const fadeElements = document.querySelectorAll('.fade-in');
+fadeElements.forEach(el => observer.observe(el));
+const heroContent = document.getElementById('heroContent');
+if (heroContent) {
+setTimeout(() => heroContent.classList.add('visible'), 300);
+}
+} catch (error) {
+console.error('Error initializing animations:', error);
+}
+}
+document.addEventListener('DOMContentLoaded', initAnimations);
+</script>
+<script id="modalScript">
+function openModal(imageSrc) {
+const modal = document.getElementById('imageModal');
+const modalImage = document.getElementById('modalImage');
+modalImage.src = imageSrc;
+modal.classList.add('active');
+document.body.style.overflow = 'hidden';
+}
+function closeModal() {
+const modal = document.getElementById('imageModal');
+modal.classList.remove('active');
+document.body.style.overflow = 'auto';
+}
+document.addEventListener('DOMContentLoaded', function() {
+const modal = document.getElementById('imageModal');
+modal.addEventListener('click', function(e) {
+if (e.target === modal) {
+closeModal();
+}
+});
+document.addEventListener('keydown', function(e) {
+if (e.key === 'Escape') {
+closeModal();
+}
+});
+});
+</script>
+<script id="navigationScript">
+function scrollToSection(sectionId) {
+const section = document.getElementById(sectionId);
+const headerHeight = 80;
+const targetPosition = section.offsetTop - headerHeight;
+window.scrollTo({
+top: targetPosition,
+behavior: 'smooth'
+});
+}
+</script>
+<script id="contactFormScript">
+function initContactForm() {
+try {
+const contactForm = document.getElementById('contactForm');
+if (!contactForm) {
+console.warn('Contact form not found');
+return;
+}
+contactForm.addEventListener('submit', function(e) {
+e.preventDefault();
+const formData = new FormData(contactForm);
+const name = formData.get('name')?.trim();
+const email = formData.get('email')?.trim();
+const message = formData.get('message')?.trim();
+if (name && email && message) {
+// Create a custom success message element
+const successMessage = document.createElement('div');
+successMessage.className = 'fixed top-4 right-4 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg z-50 transform transition-transform duration-300 translate-x-full';
+successMessage.textContent = 'Thank you for your message! I\'ll get back to you soon.';
+document.body.appendChild(successMessage);
+// Animate the message in
+setTimeout(() => successMessage.style.transform = 'translateX(0)', 100);
+// Remove the message after 3 seconds
+setTimeout(() => {
+successMessage.style.transform = 'translateX(full)';
+setTimeout(() => successMessage.remove(), 300);
+}, 3000);
+contactForm.reset();
+} else {
+// Create a custom error message element
+const errorMessage = document.createElement('div');
+errorMessage.className = 'fixed top-4 right-4 bg-red-500 text-white px-6 py-3 rounded-lg shadow-lg z-50 transform transition-transform duration-300 translate-x-full';
+errorMessage.textContent = 'Please fill in all required fields.';
+document.body.appendChild(errorMessage);
+// Animate the message in
+setTimeout(() => errorMessage.style.transform = 'translateX(0)', 100);
+// Remove the message after 3 seconds
+setTimeout(() => {
+errorMessage.style.transform = 'translateX(full)';
+setTimeout(() => errorMessage.remove(), 300);
+}, 3000);
+}
+});
+} catch (error) {
+console.error('Error initializing contact form:', error);
+}
+}
+document.addEventListener('DOMContentLoaded', initContactForm);
+</script>
+</body>
+</html>
